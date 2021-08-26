@@ -1,12 +1,18 @@
 {
   "name": "acmeet-server",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.0",
   "scripts": {
     "build": "tsc",
+    "clean": "rm -r build",
     "watch": "tsc -w",
     "dev": "nodemon build/index.js",
-    "start": "node build/index.js"
+    "dev:inspect": "nodemon --inspect build/index.js",
+    "serve": "NODE_ENV=production node build/index.js",
+    "start": "node build/index.js",
+    "db:migrate:generate": "node ./node_modules/typeorm/cli.js migration:generate -n",
+    "db:migrate:create": "node ./node_modules/typeorm/cli.js migration:create -n",
+    "db:migrate": "node ./node_modules/typeorm/cli.js migration:run",
+    "db:rollback": "node ./node_modules/typeorm/cli.js migration:revert"
   },
   "license": "MIT",
   "devDependencies": {
@@ -15,13 +21,16 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@mikro-orm/core": "^4.5.7",
-    "@mikro-orm/postgresql": "^4.5.7",
     "apollo-server-express": "^3.0.2",
+    "class-validator": "^0.13.1",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
+    "nanoid": "^3.1.25",
     "nodemon": "^2.0.12",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
-    "type-graphql": "^1.1.1"
+    "ts-node": "^10.2.0",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.2.34"
   }
 }

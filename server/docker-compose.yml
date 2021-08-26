@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    database:
+        image: postgres
+        hostname: database
+        restart: always
+        env_file: ./.env
+        environment:
+            POSTGRES_DB: ${TYPEORM_DATABASE}
+            POSTGRES_USER: ${TYPEORM_USER}
+            POSTGRES_PASSWORD: ${TYPEORM_PASSWORD}
