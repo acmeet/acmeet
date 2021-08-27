@@ -1,0 +1,20 @@
+@use '@/styles/mixins' as *;
+
+.footer {
+  width: 100%;
+  padding: 2rem;
+  border-top: 1px solid var(--translucent-fe);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+  a {
+    &:hover, &:active {
+      text-decoration: underline;
+    }
+
+    @include hfa {
+      color: var(--accent-color);
+    }
+  }
+}

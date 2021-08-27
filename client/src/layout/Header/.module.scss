@@ -1,0 +1,30 @@
+@use '@/styles/mixins' as *;
+
+.header {
+  width: 100%;
+  max-width: 1024px;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .accounts {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      &:hover, &:active {
+        text-decoration: underline;
+      }
+      
+      @include hfa {
+        color: var(--accent-color);
+      }
+    }
+  }
+}
