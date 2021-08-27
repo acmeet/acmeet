@@ -1,0 +1,5 @@
+@mixin hfa {
+  &:hover, &:focus, &:active {
+    @content;
+  }
+}
