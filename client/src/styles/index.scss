@@ -1,3 +1,4 @@
+@use '@/styles/mixins' as *;
 @import './variables';
 @import './normalize';
 
@@ -6,10 +7,17 @@
 }
 
 body {
-  color: var(--text-color);
-  background-color: var(--background-color);
   font-family: 'Red Hat Text', sans-serif;
   line-height: 1;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  @include transition(#{
+    color var(--transition-slow) ease 0s,
+    background-color var(--transition-slow) ease 0s
+  });
 }
 
 a {

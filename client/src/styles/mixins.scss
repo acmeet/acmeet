@@ -3,3 +3,9 @@
     @content;
   }
 }
+
+@mixin transition($value) {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: $value;
+  }
+}

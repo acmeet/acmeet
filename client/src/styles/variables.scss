@@ -14,10 +14,19 @@ html {
   --translucent-hv: rgba(127, 127, 127, 0.8);
 
   --shadow: 0 4px 40px 0 var(--translucent-lw);
+
+  --transition-fast: 200ms;
+  --transition-slow: 400ms;
 }
 
 html {
   --background-color: var(--white);
   --text-color: var(--black);
   --accent-color: var(--purple-dark);
+}
+
+html[data-theme=dark] {
+  --background-color: var(--grey-2);
+  --text-color: var(--grey-8);
+  --accent-color: var(--purple-light);
 }
