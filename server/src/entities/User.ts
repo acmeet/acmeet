@@ -12,7 +12,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 import { Meet } from './Meet';
 import { Availability } from './Availability';
 
-import { validateUser } from '../models/user/user.validator';
+import { validateUser } from '@/models/user/validator';
 
 
 @ObjectType()

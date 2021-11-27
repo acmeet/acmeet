@@ -1,0 +1,29 @@
+@use "@/styles/mixins" as *;
+
+.calendar {
+  width: 100%;
+  box-shadow: var(--shadow);
+
+  --_--calendar-color-lightness-white: var(--background-color-l);
+  --_--calendar-color-lightness-black: var(--text-color-l);
+
+  --_--calendar-header-label-text-color: var(--text-color);
+  --_--calendar-header-nav-text-color: var(--text-color);
+
+  &:global(._--calendar--view-month) {
+    --_--calendar-tile-border-radius: 25%;
+  }
+
+  :global(._--calendar__view__tile--disabled) button:after {
+    @include transition(#{background-color var(--transition-slow) ease 0s});
+  }
+
+  &,
+  * {
+    &,
+    &::before,
+    &::after {
+      @include transition(#{color var(--transition-slow) ease 0s});
+    }
+  }
+}

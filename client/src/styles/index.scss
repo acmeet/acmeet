@@ -1,30 +1,28 @@
-@use '@/styles/mixins' as *;
-@import './variables';
-@import './normalize';
+@import "./typography";
+@import "./variables";
+@import "./normalize";
+@import "./constants";
+@import "./mixins";
 
-:root {
-  font-size: 16px;
+#__next {
+  isolation: isolate;
 }
 
 body {
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: "Red Hat Text", sans-serif;
   line-height: 1;
 }
 
 body {
   color: var(--text-color);
   background-color: var(--background-color);
-  @include transition(#{
-    color var(--transition-slow) ease 0s,
-    background-color var(--transition-slow) ease 0s
-  });
+  @include transition(
+    #{color var(--transition-slow) ease 0s,
+    background-color var(--transition-slow) ease 0s}
+  );
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }

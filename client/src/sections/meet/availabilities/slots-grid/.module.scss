@@ -1,0 +1,70 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/constants" as *;
+
+$col-min-width: 80px;
+
+.grid-container {
+  border-radius: 1rem;
+  box-shadow: 0px 4px 16px var(--translucent-lw);
+
+  display: flex;
+  overflow: hidden;
+
+  .grid {
+    @include scrollbar();
+
+    min-width: min(100%, calc(#{$col-min-width} * 7 + #{$spacing-sm}));
+    max-width: 100%;
+
+    display: flex;
+    border-radius: 1rem;
+
+    overflow-x: auto;
+
+    &--add,
+    &--schedule {
+      .hour:hover {
+        cursor: crosshair;
+      }
+    }
+
+    .col-header {
+      height: var(--col-header-height);
+      padding: var(--col-header-padding);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &-dow {
+        font-size: var(--font-size-description);
+        margin-bottom: var(--spacing-tn);
+      }
+    }
+
+    .col {
+      --col-min-width: #{$col-min-width};
+      min-width: var(--col-min-width);
+      display: flex;
+      flex-direction: column;
+
+      &.last-day-of-week {
+        margin-right: $spacing-sm;
+      }
+    }
+
+    .hour {
+      box-shadow: 1px 1px 4px 0 var(--translucent-md);
+
+      .slot {
+        height: var(--slot-height);
+        box-shadow: 1px 1px 4px 0 var(--translucent-lw);
+        cursor: pointer;
+
+        &.outlined {
+          border: 1px dashed var(--text-color);
+        }
+      }
+    }
+  }
+}

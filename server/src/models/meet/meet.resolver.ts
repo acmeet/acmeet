@@ -8,15 +8,15 @@ import {
 } from 'type-graphql';
 import { getManager } from 'typeorm';
 
-import { Meet } from '../../entities/Meet';
+import { Meet } from '@/entities/Meet';
 import { MeetIdInput, CreateMeetInput, ScheduleMeetInput, UpdateMeetInput } from './types';
 
-import { Availability } from '../../entities/Availability';
-import { User } from '../../entities/User';
+import { Availability } from '@/entities/Availability';
+import { User } from '@/entities/User';
 
-import { url } from '../../utils/url';
+import { url } from '@/utils/url';
 
-import { DATE_AGNOSTIC_MEET_DATES } from '../../constants';
+import { DATE_AGNOSTIC_MEET_DATES } from '@/common/constants';
 
 
 @Resolver(() => Meet)

@@ -1,0 +1,30 @@
+.hour-picker {
+  --offset: 4px;
+  border-radius: 0.25rem;
+  box-shadow: 0 var(--offset) 4px calc(-1 * var(--offset)) var(--translucent-hv);
+  display: inline-flex;
+
+  & &__hour, & &__ampm {
+    height: 1.5em;
+    outline: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 var(--offset) 4px calc(-1 * var(--offset)) var(--translucent-hv);
+
+    &:focus {
+      --offset: 0px;
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  &__hour {
+    width: 4rem;
+    padding-right: 0.5em; 
+  }
+
+  &__ampm {
+    padding: 0 0.5em;
+  }
+}

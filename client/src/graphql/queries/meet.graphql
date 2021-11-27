@@ -1,0 +1,13 @@
+query Meet($id: ID!) {
+    meet(id: $id) {
+        title
+        description
+        dates
+        hours
+        scheduledTime
+        availabilities {
+            timeslots
+            name
+        }
+    }
+}

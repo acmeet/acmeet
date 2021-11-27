@@ -1,23 +1,38 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "acmeet-client",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "clean": "rm -r .next",
+    "dev": "concurrently --kill-others \"next dev\" \"yarn gen:watch\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen": "graphql-codegen --config codegen.yml",
+    "gen:watch": "graphql-codegen --config codegen.yml --watch"
   },
   "dependencies": {
+    "@_--/react-calendar": "^0.0.0-alpha.9",
+    "@vvo/tzdb": "^6.11.0",
+    "graphql": "^15.6.0",
+    "graphql-tag": "^2.12.5",
     "next": "11.1.0",
+    "next-urql": "^3.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sass": "^1.38.1"
+    "sass": "^1.38.1",
+    "urql": "^2.0.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.2.0",
+    "@graphql-codegen/typescript": "2.2.2",
+    "@graphql-codegen/typescript-operations": "2.1.4",
+    "@graphql-codegen/typescript-urql": "^3.2.0",
     "@types/react": "17.0.17",
+    "concurrently": "^6.2.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
+    "react-is": "^17.0.2",
     "typescript": "4.3.5"
   }
 }

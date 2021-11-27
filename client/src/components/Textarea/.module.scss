@@ -1,0 +1,19 @@
+@use '@/styles/mixins' as *;
+
+.textarea {
+  @include box-shadow-focus();
+  @include scrollbar();
+
+  white-space: pre;
+  overflow: overlay;
+  
+  &::placeholder {
+    color: var(--translucent-md);
+    background: transparent;
+    border: none;
+  }
+  
+  &::-webkit-resizer {
+    background-color: transparent;
+  }
+}

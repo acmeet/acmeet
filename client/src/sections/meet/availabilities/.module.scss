@@ -1,0 +1,97 @@
+@use "@/styles/constants" as *;
+@use "@/styles/mixins" as *;
+
+.availabilities {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+
+  --responders-width: 12rem;
+
+  .calendar-container {
+    // flex: 1 1 50%;
+    max-width: 100%;
+    display: flex;
+
+    .calendar {
+      --col-header-height: 3rem;
+      --col-header-padding: 0.25rem;
+      --slot-height: 1.25rem;
+
+      max-width: 100%;
+      display: flex;
+      gap: $spacing-sm;
+
+      .calendar-times {
+        align-items: flex-end;
+
+        .col-header,
+        & .hour {
+          font-size: var(--font-size-description);
+          text-align: right;
+        }
+        .col-header {
+          height: var(--col-header-height);
+          padding: var(--col-header-padding);
+          padding-right: 0;
+          display: flex;
+          align-items: center;
+          font-size: var(--font-size-description);
+          text-align: right;
+        }
+
+        .hour {
+          height: calc(var(--slot-height) * 2);
+        }
+      }
+    }
+  }
+
+  .responders {
+    max-height: 100%;
+    min-width: var(--responders-width);
+    flex: 1 1 var(--responders-width);
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .responders-header {
+      --line-height: 1.1;
+      line-height: var(--line-height);
+      height: calc(var(--font-size-subheading) * 2 * var(--line-height));
+      white-space: break-spaces;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .responders-list {
+      @include scrollbar();
+
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+
+      .responder {
+        word-wrap: break-word;
+
+        @include hfa {
+          color: var(--accent-color);
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.selected {
+          color: var(--accent-color);
+        }
+
+        &.unavailable {
+          opacity: var(--opacity-lw);
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+}

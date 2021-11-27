@@ -16,8 +16,8 @@ import { User } from './User';
 import { Availability } from './Availability';
 import { Timeslot } from './Timeslot';
 
-import { validateMeet } from '../models/meet/validator';
-import { updateById } from '../utils/updateAndReturnEntity';
+import { validateMeet } from '@/models/meet/validator';
+import { updateById } from '@/utils/updateAndReturnEntity';
 
 @ObjectType()
 @Entity()
@@ -27,7 +27,7 @@ export class Meet extends BaseEntity {
   readonly id!: string;
 
   @Field(() => String)
-  @Column()
+  @Column({ unique: true })
   readonly url!: string;
 
   @Field()

@@ -1,15 +1,15 @@
 import { ArgumentValidationError } from 'type-graphql';
 
-import { KeyOf, ValueOf } from '../../utils/types';
+import { KeyOf, ValueOf } from '@/common/utils/types';
 import { AvailabilityInput } from './types';
 
-import { isUuid } from '../../utils/validation/isUuid';
+import { isUuid } from '@/utils/validation/isUuid';
 
 import {
   NAME_MIN_LENGTH,
   NAME_MAX_LENGTH,
   AVAILABILIY_TIMES_MAX_AMOUNT,
-} from '../../constants/validation';
+} from '@/common/constants/validation';
 
 export const validateAvailability = (fields: Partial<AvailabilityInput>) => {
   Object.entries(fields).forEach(([property, value]) => {

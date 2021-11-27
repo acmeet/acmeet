@@ -1,0 +1,19 @@
+@use "@/styles/constants" as *;
+
+.meet {
+  // padding: 0 $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .name-panel {
+      padding: $spacing-sm 0;
+      box-shadow: var(--shadow);
+    }
+  }
+}

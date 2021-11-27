@@ -1,0 +1,56 @@
+@use '@/styles/constants' as *;
+@use '@/styles/mixins' as *;
+
+.meet-times {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  select {
+    cursor: pointer;
+  }
+
+  .start-end-hours {
+    display: flex;
+    justify-content: space-between;
+    gap: $spacing-md;
+
+    .start-hour, .end-hour {
+      &__label {
+        font-size: var(--font-size-description);
+        margin-bottom: var(--spacing-tn);
+      }
+
+      &__picker select * {
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+    }
+  }
+
+  .timezone {
+    &__label {
+      font-size: var(--font-size-description);
+      margin-bottom: 0.25em;
+    }
+
+    &__picker {
+      @include box-shadow-focus();
+      
+      line-height: 1.5em;
+      width: 100%;
+      padding-right: 0.25rem;
+      text-overflow: ellipsis;
+      
+      &::-ms-expand {
+        display: none;
+      }
+
+      & * {
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+    }
+  }    
+}

@@ -1,16 +1,17 @@
 import { ArgumentValidationError } from 'type-graphql';
 
-import { isUuid } from '../../utils/validation/isUuid';
+import { isUuid } from '@/utils/validation/isUuid';
 
-import { KeyOf, ValueOf } from '../../utils/types';
 import { MeetInput } from './types';
+
+import type { KeyOf, ValueOf } from '@/common/utils/types';
 
 import {
   MEET_TITLE_MIN_LENGTH,
   MEET_TITLE_MAX_LENGTH,
   MEET_DESCRIPTION_MAX_LENGTH,
   MEET_DATES_MAX_AMOUNT,
-} from '../../constants/validation';
+} from '@/common/constants/validation';
 
 
 export const validateMeet = (fields: Partial<MeetInput>) => {

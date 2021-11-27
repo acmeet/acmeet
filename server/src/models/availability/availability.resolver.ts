@@ -7,12 +7,12 @@ import {
   Root,
 } from 'type-graphql';
 
-import { Availability } from '../../entities/Availability';
+import { Availability } from '@/entities/Availability';
 import { AvailabilityIdInput, CreateAvailabilityInput, UpdateAvailabilityInput } from './types';
 
-import { Meet } from '../../entities/Meet';
-import { User } from '../../entities/User';
-import { Timeslot } from '../../entities/Timeslot';
+import { Meet } from '@/entities/Meet';
+import { User } from '@/entities/User';
+import { Timeslot } from '@/entities/Timeslot';
 
 @Resolver(() => Availability)
 export class AvailabilityResolver {

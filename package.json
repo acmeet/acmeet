@@ -1,0 +1,13 @@
+{
+  "name": "acmeet",
+  "version": "0.0.0",
+  "scripts": {
+    "install": "concurrently -n client,server,common \"cd client && yarn\" \"cd server && yarn\" \"cd common && yarn\"",
+    "dev": "concurrently \"cd client && yarn dev\" \"cd server && yarn dev\""
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^6.2.1"
+  }
+}

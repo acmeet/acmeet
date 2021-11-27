@@ -1,0 +1,11 @@
+@use '@/styles/mixins' as *;
+
+.input {
+  @include box-shadow-focus();
+
+  &::placeholder {
+    color: var(--translucent-md);
+    background: transparent;
+    border: none;
+  }
+}

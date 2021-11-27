@@ -1,3 +1,5 @@
+@use '@/styles/constants' as *;
+
 .page-container {
   min-height: 100vh;
   height: 100vh;
@@ -7,5 +9,9 @@
 
   .content {
     flex-grow: 1;
+    min-width: $sm;
+    max-width: $lg;
+    width: 100%;
+    padding: $spacing-md;
   }
 }

@@ -1,9 +1,10 @@
-@use '@/styles/mixins' as *;
+@use "@/styles/constants" as *;
+@use "@/styles/mixins" as *;
 
 .header {
+  max-width: $lg;
   width: 100%;
-  max-width: 1024px;
-  padding: 2rem;
+  padding: $spacing-md;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,25 +12,28 @@
   .left {
     flex-basis: 50%;
     .logo {
-      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      gap: calc(#{$spacing-sm} / 2);
+      font-size: var(--font-size-heading);
       font-weight: 700;
-    }
-  }
-  
-  .accounts {
-    display: flex;
-    gap: 2rem;
 
-    a {
-      &:hover, &:active {
-        text-decoration: underline;
-      }
-      
-      @include hfa {
-        color: var(--accent-color);
+      svg rect {
+        @include transition(#{fill var(--transition-slow) ease 0s});
       }
     }
   }
+
+  // .accounts {
+  //   display: flex;
+  //   gap: 2rem;
+
+  //   a {
+  //     @include hfa {
+  //       color: var(--accent-color);
+  //     }
+  //   }
+  // }
 
   .controls {
     display: flex;

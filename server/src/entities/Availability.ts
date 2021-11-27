@@ -16,8 +16,8 @@ import { User } from './User';
 import { Meet } from './Meet';
 import { Timeslot } from './Timeslot';
 
-import { validateAvailability } from '../models/availability/availability.validator';
-import { updateById } from '../utils/updateAndReturnEntity';
+import { validateAvailability } from '@/models/availability/validator';
+import { updateById } from '@/utils/updateAndReturnEntity';
 
 @ObjectType()
 @Entity()

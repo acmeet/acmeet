@@ -1,0 +1,49 @@
+@use '@/styles/constants' as *;
+@use '@/styles/mixins' as *;
+
+.meet-creation {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  .meet-config {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    gap: $spacing-md;
+
+    .meet-dates {
+      flex-basis: $sm;
+
+      .dates-selected {
+        margin-bottom: var(--spacing-tn);
+        font-size: var(--font-size-description);
+
+        &--exceeded {
+          color: var(--accent-color);
+        }
+      }
+    }
+
+    .meet-config-col--right {
+      flex: 1 1 20em;
+      max-width: $sm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-lg;
+      margin-top: calc(var(--font-size-description) * 1.25);
+      padding: $spacing-md;
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+
+      .meet-submit {
+        flex-grow: 1;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

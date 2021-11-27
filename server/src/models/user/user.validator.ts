@@ -1,7 +1,8 @@
 import { ArgumentValidationError } from 'type-graphql';
 
-import { KeyOf, ValueOf } from '../../utils/types';
 import { UserInput } from './types';
+
+import type { KeyOf, ValueOf } from '@/common/utils/types';
 
 import {
   NAME_MIN_LENGTH,
@@ -9,7 +10,7 @@ import {
   EMAIL_MAX_LENGTH,
   PASSWORD_MIN_LENGTH,
   PASSWORD_MAX_LENGTH
-} from '../../constants/validation';
+} from '@/common/constants/validation';
 
 export const validateUser = (fields: Partial<UserInput>) => {
   Object.entries(fields).forEach(([property, value]) => {

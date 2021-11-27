@@ -1,0 +1,14 @@
+@use '@/styles/constants' as *;
+
+.header {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-sm;
+
+  .buttons {
+    display: flex;
+    gap: $spacing-sm;
+  }
+}

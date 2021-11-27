@@ -2,13 +2,18 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/api/*": ["src/api/*"],
       "@/components/*": ["src/components/*"],
+      "@/constants": ["src/constants"],
       "@/context/*": ["src/context/*"],
+      "@/graphql": ["src/graphql/generated/graphql"],
       "@/hooks/*": ["src/hooks/*"],
       "@/layout/*": ["src/layout/*"],
       "@/pages/*": ["src/pages/*"],
       "@/sections/*": ["src/sections/*"],
       "@/styles/*": ["src/styles/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/common/*": ["../common/src/*"],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -24,6 +29,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../common"],
   "exclude": ["node_modules"]
 }

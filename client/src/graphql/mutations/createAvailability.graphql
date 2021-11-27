@@ -1,0 +1,12 @@
+mutation CreateAvailability(
+  $meetId: ID!
+  $name: String!
+  $times: [DateTime!]!
+) {
+  createAvailability(meetId: $meetId, name: $name, times: $times) {
+    id
+    meet {
+      id
+    }
+  }
+}

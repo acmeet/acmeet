@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 import { THEME_LOCALSTORAGE_KEY } from './constants';
 
 export type Theme = 'light' | 'dark';
@@ -20,8 +20,14 @@ export const useThemeContext = () => {
 }
 
 export const ThemeProvider: React.FC = ({ children }) => {
-  let initialTheme = 'light';
-  if (typeof window !== 'undefined') { initialTheme = window?.document?.documentElement?.dataset?.theme ?? 'light' };
+  const initialTheme = useMemo(() => {
+    let res = 'light';
+    if (typeof window !== 'undefined') {
+      res = window?.document?.documentElement?.dataset?.theme ?? 'light';
+    };
+    return res;
+  }, []);
+  
   const [theme, _setTheme] = useState<Theme>(initialTheme as Theme);
 
   

@@ -1,0 +1,25 @@
+:root {
+  font-size: 16px;
+
+  --font-size-headline: 2rem;
+  --font-size-heading: 1.75rem;
+  --font-size-subheading: 1.5rem;
+  --font-size-subtitle: 1.15rem;
+  --font-size-base: 1rem;
+  --font-size-description: 0.75rem;
+}
+
+h1 {
+  font-size: var(--font-size-headline);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--font-size-subheading);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--font-size-subtitle);
+  font-weight: 700;
+}

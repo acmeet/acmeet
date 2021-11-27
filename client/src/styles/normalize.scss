@@ -1,31 +1,82 @@
+* {
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 html {
   text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
+  --webkit-font-smoothing: antialiased;
 }
 
 main {
   display: block;
 }
 
-img {
+img,
+picture,
+video,
+display,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
   border-style: none;
 }
 
-button, input, select, textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
 }
 
-button, select {
+button,
+input,
+select,
+textarea {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button,
+select {
   text-transform: none;
 }
 
-[type='number'] {
-  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+[type="number"] {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
     height: auto;
   }
 }

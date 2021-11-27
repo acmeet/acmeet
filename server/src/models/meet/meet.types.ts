@@ -1,6 +1,6 @@
 import { ArgsType, Field, GraphQLISODateTime, ID, Int } from 'type-graphql';
 
-import { Meet } from '../../entities/Meet';
+import { Meet } from '@/entities/Meet';
 
 export class MeetInput implements Partial<Meet> {
   @Field(() => ID)

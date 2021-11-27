@@ -1,0 +1,10 @@
+@use '@/styles/mixins' as *;
+
+.panel-wrapper {
+  height: 0px;
+  overflow: hidden;
+  
+  @include transition(#{
+    height var(--transition-slow) ease 0s,
+  });
+}

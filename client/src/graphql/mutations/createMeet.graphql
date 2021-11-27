@@ -1,0 +1,5 @@
+mutation CreateMeet($title: String!, $description: String, $dates: [DateTime!]!, $hours: [Int!]!) {
+  createMeet(title: $title, description: $description, dates: $dates, hours: $hours) {
+    id
+  }
+}

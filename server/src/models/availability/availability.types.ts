@@ -1,6 +1,6 @@
 import { Field, ID, GraphQLISODateTime, ArgsType } from 'type-graphql';
 
-import { Availability } from '../../entities/Availability';
+import { Availability } from '@/entities/Availability';
 
 export class AvailabilityInput implements Partial<Availability> {
   @Field(() => ID)

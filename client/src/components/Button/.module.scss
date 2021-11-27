@@ -1,0 +1,89 @@
+@use "@/styles/mixins" as *;
+
+@function shade($color, $percent) {
+  @return mix($black, $color, $percent);
+}
+
+.button {
+  --button-color-primary-h: var(--background-color-h);
+  --button-color-primary-s: var(--background-color-s);
+  --button-color-primary-l: var(--background-color-l);
+  --button-color-primary: hsl(
+    var(--button-color-primary-h),
+    var(--button-color-primary-s),
+    var(--button-color-primary-l)
+  );
+  --button-color-secondary-h: var(--text-color-h);
+  --button-color-secondary-s: var(--text-color-s);
+  --button-color-secondary-l: var(--text-color-l);
+  --button-color-secondary: hsl(
+    var(--button-color-secondary-h),
+    var(--button-color-secondary-s),
+    var(--button-color-secondary-l)
+  );
+
+  --button-color-text: var(--button-color-primary);
+
+  --button-color-fill-l: var(--button-color-secondary-l);
+  --button-color-fill: hsl(
+    var(--button-color-secondary-h),
+    var(--button-color-secondary-s),
+    var(--button-color-fill-l)
+  );
+
+  --button-color-border: var(--button-color-fill);
+  --button-border-radius: 0.5rem;
+
+  padding: 0.25rem 1rem;
+  background-color: var(--button-color-fill);
+  color: var(--button-color-text);
+  border: 2px solid var(--button-color-border);
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+
+  @include transition(
+    #{color var(--transition-slow) ease 0s,
+    background-color var(--transition-slow) ease 0s,
+    border-color var(--transition-slow) ease 0s}
+  );
+
+  &:disabled {
+    opacity: var(--opacity-lw);
+    cursor: not-allowed;
+  }
+
+  &--accent {
+    --button-color-secondary-h: var(--accent-color-h);
+    --button-color-secondary-s: var(--accent-color-s);
+    --button-color-secondary-l: var(--accent-color-l);
+  }
+
+  &:hover,
+  &:active {
+    &:not(:disabled) {
+      --button-color-fill-l: 65%;
+    }
+  }
+
+  &--outlined {
+    --button-color-text: var(--button-color-secondary);
+    --button-color-fill: var(--button-color-primary);
+    --button-color-border: var(--button-color-secondary);
+
+    &:hover,
+    &:active {
+      &:not(:disabled) {
+        --button-color-text: var(--button-color-primary);
+        --button-color-fill: var(--button-color-secondary);
+      }
+    }
+  }
+
+  &--pill {
+    --button-border-radius: 9999px;
+  }
+
+  &--sharp {
+    --button-border-radius: 0px;
+  }
+}

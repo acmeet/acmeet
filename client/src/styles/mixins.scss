@@ -1,5 +1,9 @@
+@use "@/styles/constants";
+
 @mixin hfa {
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     @content;
   }
 }
@@ -7,5 +11,50 @@
 @mixin transition($value) {
   @media (prefers-reduced-motion: no-preference) {
     transition: $value;
+  }
+}
+
+@mixin box-shadow-focus($offset: 4px, $varname: --offset) {
+  #{$varname}: $offset;
+  outline: none;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 var(#{$varname}) 4px calc(-1 * var(#{$varname}))
+    var(--translucent-hv);
+
+  &:focus {
+    #{$varname}: 0px;
+  }
+}
+
+@mixin scrollbar {
+  $scrollbar-size: 4px;
+
+  &::-webkit-scrollbar {
+    height: $scrollbar-size;
+    width: $scrollbar-size;
+
+    &-track,
+    &-thumb {
+      border-radius: $scrollbar-size;
+    }
+    &-track {
+      background-color: var(--translucent-lw);
+    }
+    &-thumb {
+      background-color: var(--text-color);
+    }
+  }
+}
+
+@mixin phone {
+  @media (max-width: constants.$md) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: constants.$lg) {
+    @content;
   }
 }
