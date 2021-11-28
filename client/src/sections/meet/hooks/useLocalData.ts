@@ -1,9 +1,9 @@
 import { SLOTS_PER_HOUR } from '@/common/constants';
 import { useCreateAvailabilityMutation } from '@/graphql';
 import { usePersistedState } from '@/hooks/usePersistedState';
-import { addHours, addMinutes } from '@/utils/datetime/date';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import type { GridIndex, View } from '../types';
+import { addMinutes } from '@/utils/datetime/date';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import type { View } from '../types';
 
 interface UseLocalDataProps {
   meetId: string;
@@ -27,15 +27,18 @@ export const useLocalData = ({
       Array<(0|1)>(numHours * SLOTS_PER_HOUR).fill(0)
     ))
   );
+  const [localNumTimesAvailable, setLocalNumTimesAvailable] = useState(0); // how many timeslots are selected locally
   
   useEffect(() => {
     setLocalAvailabilityGrid([...Array(numDates)].map(() => (
       Array<(0|1)>(numHours * SLOTS_PER_HOUR).fill(0)
     )));
+    setLocalNumTimesAvailable(0);
   }, [numDates, numHours, setLocalAvailabilityGrid]);
 
   const submitLocalAvailability = async () => {
     if (fetching) { return; }
+    if (localName === "" || localNumTimesAvailable === 0) { return; } // should never happen but sanity check
 
     // convert local timeslots grid to list of available times 
     const times: Date[] = [];
@@ -59,9 +62,10 @@ export const useLocalData = ({
     setView('view');
   }
 
-  const [localScheduledTime, setLocalScheduledTime] = useState<[GridIndex | undefined, GridIndex | undefined]>([undefined, undefined]);
+  const [localScheduledTime, setLocalScheduledTime] = useState<[[number, number] | undefined, [number, number] | undefined]>([undefined, undefined]);
 
   const submitLocalScheduledTime = () => {
+    // TODO
 
     setLocalScheduledTime([undefined, undefined]);
   }
@@ -69,6 +73,7 @@ export const useLocalData = ({
   return {
     localName, setLocalName,
     localAvailabilityGrid, setLocalAvailabilityGrid,
+    localNumTimesAvailable, setLocalNumTimesAvailable,
     submitLocalAvailability,
     localScheduledTime, setLocalScheduledTime,
     submitLocalScheduledTime,

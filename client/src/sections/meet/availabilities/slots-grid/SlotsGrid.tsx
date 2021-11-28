@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { arrayShallowEquals } from '@/utils/arrayShallowEquals';
 import { c } from '@/utils/cls';
 import { SLOTS_PER_HOUR } from '@/common/constants';
@@ -21,6 +21,7 @@ interface SlotsGridProps {
   availabilityGrids: AvailabilityGrid[];
   localAvailabilityGrid: AvailabilityGrid;
   setLocalAvailabilityGrid: Dispatch<SetStateAction<AvailabilityGrid>>;
+  setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
   selectedAvailabilityIndex: number | undefined;
   selectedSlot: [number, number] | undefined;
   setSelectedSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
@@ -37,6 +38,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
   availabilityGrids,
   localAvailabilityGrid,
   setLocalAvailabilityGrid,
+  setLocalNumTimesAvailable,
   selectedAvailabilityIndex,
   selectedSlot,
   setSelectedSlot,
@@ -56,6 +58,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
     view,
     localAvailabilityGrid,
     setLocalAvailabilityGrid,
+    setLocalNumTimesAvailable,
     setSelectedSlot,
     setHoveredSlot,
   });

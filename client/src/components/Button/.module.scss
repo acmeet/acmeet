@@ -44,7 +44,8 @@
   @include transition(
     #{color var(--transition-slow) ease 0s,
     background-color var(--transition-slow) ease 0s,
-    border-color var(--transition-slow) ease 0s}
+    border-color var(--transition-slow) ease 0s,
+    opacity var(--transition-slow) ease 0s}
   );
 
   &:disabled {

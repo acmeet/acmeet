@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { Dispatch, MutableRefObject, SetStateAction, useMemo, useState } from 'react';
 
 import SlotsGrid from './slots-grid';
 
@@ -19,6 +19,7 @@ interface AvailabilitiesProps {
   availabilityGrids: AvailabilityGrid[];
   localAvailabilityGrid: (0|1)[][];
   setLocalAvailabilityGrid: Dispatch<SetStateAction<(0|1)[][]>>;
+  setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
   availabilities: Availability[];
   selectedAvailabilityIndex: number | undefined;
   setSelectedAvailabilityIndex: Dispatch<SetStateAction<number | undefined>>;
@@ -32,6 +33,7 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
   availabilityGrids,
   localAvailabilityGrid,
   setLocalAvailabilityGrid,
+  setLocalNumTimesAvailable,
   availabilities,
   selectedAvailabilityIndex,
   setSelectedAvailabilityIndex,
@@ -84,6 +86,7 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
             availabilityGrids={availabilityGrids}
             localAvailabilityGrid={localAvailabilityGrid}
             setLocalAvailabilityGrid={setLocalAvailabilityGrid}
+            setLocalNumTimesAvailable={setLocalNumTimesAvailable}
             selectedAvailabilityIndex={selectedAvailabilityIndex}
             selectedSlot={selectedSlot}
             setSelectedSlot={setSelectedSlot}

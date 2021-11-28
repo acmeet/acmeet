@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, MutableRefObject, useMemo } from 'react';
 import Button from '@/components/Button';
 import styles from './.module.scss';
 
@@ -9,6 +9,7 @@ interface AvailabilitiesHeaderProps {
   view: View;
   setView: Dispatch<SetStateAction<View>>;
   localName: string;
+  localNumTimesAvailable: number;
   submitAvailability: MouseEventHandler<HTMLButtonElement>;
   submitScheduledTime: MouseEventHandler<HTMLButtonElement>;
 }
@@ -19,6 +20,7 @@ const AvailabilitiesHeader: React.FC<AvailabilitiesHeaderProps> = ({
   submitScheduledTime,
   submitAvailability,
   localName,
+  localNumTimesAvailable,
 }) => {
 
   const {
@@ -53,6 +55,13 @@ const AvailabilitiesHeader: React.FC<AvailabilitiesHeaderProps> = ({
     }
   }, [view, setView, submitAvailability, submitScheduledTime]);
 
+  const rightButtonIsDisabled = useMemo(() => {
+    switch (view) {
+      case 'add': return localName.length === 0 || localNumTimesAvailable === 0;
+      default: return false;
+    }
+  }, [view, localName, localNumTimesAvailable]);
+
   return (
     <div className={styles.header}>
       <h2 className={styles.heading}>{headingLabel}</h2>
@@ -66,7 +75,7 @@ const AvailabilitiesHeader: React.FC<AvailabilitiesHeaderProps> = ({
           accent={true}
           variant="outlined"
           onClick={onClickAddAvailabilityButton}
-          disabled={view === 'add' && localName.length === 0}
+          disabled={rightButtonIsDisabled}
         >
           {addAvailabilityLabel}
         </Button>

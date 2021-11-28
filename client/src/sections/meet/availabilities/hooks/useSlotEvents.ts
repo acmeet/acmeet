@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction, useMemo, useRef, useState } from 'react';
+import React, { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction, useMemo, useRef, useState } from 'react';
 import { arrayShallowEquals } from '@/utils/arrayShallowEquals';
 import { noop_undefined } from '@/utils/noop';
 import type { AvailabilityGrid, View } from '../../types';
@@ -7,6 +7,7 @@ interface UseSlotEventsProps {
   view: View;
   localAvailabilityGrid: AvailabilityGrid;
   setLocalAvailabilityGrid: Dispatch<SetStateAction<AvailabilityGrid>>;
+  setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
   setSelectedSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
   setHoveredSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
 }
@@ -25,6 +26,7 @@ export const useSlotEvents = ({
   view,
   localAvailabilityGrid,
   setLocalAvailabilityGrid,
+  setLocalNumTimesAvailable,
   setSelectedSlot,
   setHoveredSlot,
 }: UseSlotEventsProps): SlotEventHandlers => {
@@ -82,11 +84,25 @@ export const useSlotEvents = ({
             if (i1 > i2) { [i1, i2] = [i2, i1]; }
             if (j1 > j2) { [j1, j2] = [j2, j1]; }
 
+            let balance = 0;
+
             for (let i = i1; i <= i2; ++i) {
               for (let j = j1; j <= j2; ++j) {
-                localAvailabilityGrid[i][j] = isDeselecting.current ? 0 : 1;
+                if (isDeselecting.current) {
+                  if (localAvailabilityGrid[i][j] !== 0) {
+                    balance -= 1;
+                  }
+                  localAvailabilityGrid[i][j] = 0;
+                } else {
+                  if (localAvailabilityGrid[i][j] !== 1) {
+                    balance += 1;
+                  }
+                  localAvailabilityGrid[i][j] = 1;
+                }
               }
             }
+            
+            setLocalNumTimesAvailable((count) => count + balance);
             setLocalAvailabilityGrid(localAvailabilityGrid);
 
             setSelectionStartSlot(undefined);
@@ -110,6 +126,7 @@ export const useSlotEvents = ({
     selectionEndSlot,
     localAvailabilityGrid,
     setLocalAvailabilityGrid,
+    setLocalNumTimesAvailable,
     setHoveredSlot,
     setSelectedSlot,
   ]);

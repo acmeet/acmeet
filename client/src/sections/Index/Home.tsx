@@ -93,6 +93,7 @@ const Home = () => {
           <div className={styles['meet-submit']}>
             <Button
               type="submit"
+              variant="outlined"
               className={styles['meet-submit__button']}
               onClick={onClickCreateMeetButton}
               disabled={!validateMeetFields({ name: title, description, dates, hours })}

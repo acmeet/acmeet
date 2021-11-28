@@ -46,6 +46,7 @@ const Meet = ({
   const {
     localName, setLocalName,
     localAvailabilityGrid, setLocalAvailabilityGrid,
+    localNumTimesAvailable, setLocalNumTimesAvailable,
     submitLocalAvailability,
     localScheduledTime, setLocalScheduledTime,
     submitLocalScheduledTime,
@@ -64,6 +65,7 @@ const Meet = ({
           submitScheduledTime={submitLocalScheduledTime}
           submitAvailability={submitLocalAvailability}
           localName={localName}
+          localNumTimesAvailable={localNumTimesAvailable}
         />
         <Panel className={styles['name-panel']} hidden={view !== 'add'}>
           <Input
@@ -83,6 +85,7 @@ const Meet = ({
           availabilityGrids={availabilityGrids}
           localAvailabilityGrid={localAvailabilityGrid}
           setLocalAvailabilityGrid={setLocalAvailabilityGrid}
+          setLocalNumTimesAvailable={setLocalNumTimesAvailable}
           availabilities={availabilities}
           selectedAvailabilityIndex={selectedAvailabilityIndex}
           setSelectedAvailabilityIndex={setSelectedAvailabilityIndex}
