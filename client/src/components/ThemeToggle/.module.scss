@@ -5,7 +5,7 @@
   height: var(--size);
   width: calc(2 * var(--size));
   border-radius: var(--size);
-  border: 1px solid var(--accent-color);
+  border: 1px solid var(--text-color);
   position: relative;
   cursor: pointer;
 
@@ -17,14 +17,15 @@
     height: var(--switch-size);
     width: var(--switch-size);
     border-radius: var(--size);
-    background-color: var(--accent-color);
+    background-color: var(--text-color);
     position: absolute;
     top: 1px;
     left: 1px;
 
     @include transition(
       #{left var(--transition-slow) ease 0s,
-      background-color var(--transition-slow) ease 0s}
+      background-color var(--transition-slow) ease 0s,
+      box-shadow var(--transition-slow) ease 0s}
     );
 
     &:focus {
@@ -34,7 +35,8 @@
 
   @include hfa {
     &::before {
-      box-shadow: 0px 0px 8px 4px var(--translucent-hv);
+      box-shadow: 0px 0px 2px 4px
+        hsl(var(--accent-color-hsl) / var(--opacity-hv));
     }
   }
 
