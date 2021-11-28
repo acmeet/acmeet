@@ -39,7 +39,6 @@ acmeet is a web application for assisting groups of people in finding times to s
 
 ### frontend
 
-- filter availability of arbitrary subset of responders, not just single responder
 - touch events
 - better mobile support in general
 - "preview" change with click and drag when adding availability
