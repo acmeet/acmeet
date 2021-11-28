@@ -105,7 +105,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
                         styles.slot,
                         isOutlined(i, row) && styles['outlined'],
                       )}
-                      style={{backgroundColor: `hsla(127deg, 72%, 42%, ${opacity(i, row)})` }}
+                      style={{backgroundColor: `hsl(127deg 72% 42% / ${opacity(i, row)})` }}
                       onMouseDown={onMouseDown(i, row)}
                       onMouseUp={onMouseUp(i, row)}
                       onMouseEnter={onMouseEnter(i, row)}

@@ -23,6 +23,10 @@ html {
   --purple-dark-l: var(--lightness-purple-dark);
   --purple-light-l: var(--lightness-purple-light);
 
+  --hue-green: 127deg;
+  --saturation-green: 72%;
+  --lightness-green: 42%;
+
   --grey: hsl(var(--hue-base) var(--saturation-base) var(--grey-l));
   --grey-2: hsl(var(--hue-base) var(--saturation-base) var(--grey-2-l));
   --grey-7: hsl(var(--hue-base) var(--saturation-base) var(--grey-7-l));
