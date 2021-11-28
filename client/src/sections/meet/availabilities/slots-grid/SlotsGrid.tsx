@@ -9,6 +9,7 @@ import styles from './.module.scss';
 
 import type { DayOfWeekIndex } from '@/utils/datetime/date';
 import type { AvailabilityGrid, View } from '../../types';
+import { countAvailability } from '../utils/count-availability';
 
 const slotsMap = Array(SLOTS_PER_HOUR).fill(undefined);
 
@@ -22,7 +23,7 @@ interface SlotsGridProps {
   localAvailabilityGrid: AvailabilityGrid;
   setLocalAvailabilityGrid: Dispatch<SetStateAction<AvailabilityGrid>>;
   setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
-  selectedAvailabilityIndex: number | undefined;
+  selectedAvailabilityGrids: AvailabilityGrid[];
   selectedSlot: [number, number] | undefined;
   setSelectedSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
   hoveredSlot: [number, number] | undefined;
@@ -39,7 +40,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
   localAvailabilityGrid,
   setLocalAvailabilityGrid,
   setLocalNumTimesAvailable,
-  selectedAvailabilityIndex,
+  selectedAvailabilityGrids,
   selectedSlot,
   setSelectedSlot,
   hoveredSlot,
@@ -69,9 +70,10 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
         return localAvailabilityGrid[i][j];
       }
       case 'view': {
-        return selectedAvailabilityIndex === undefined
-          ? aggregateAvailabilitiesGrid[i][j] / availabilityGrids.length
-          : availabilityGrids[selectedAvailabilityIndex][i][j];
+        return selectedAvailabilityGrids.length > 0 && selectedAvailabilityGrids.length < availabilityGrids.length
+          ? countAvailability(selectedAvailabilityGrids, i, j) / selectedAvailabilityGrids.length
+          : aggregateAvailabilitiesGrid[i][j] / availabilityGrids.length
+        ;
       }
       default: return 0;
     }
@@ -103,7 +105,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
                       key={k}
                       className={c(
                         styles.slot,
-                        isOutlined(i, row) && styles['outlined'],
+                        isOutlined(i, row) && styles.outlined,
                       )}
                       style={{backgroundColor: `hsl(127deg 72% 42% / ${opacity(i, row)})` }}
                       onMouseDown={onMouseDown(i, row)}

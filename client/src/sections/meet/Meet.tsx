@@ -1,6 +1,6 @@
 import type { UseQueryResponse } from "urql";
 import type { MeetQuery } from "@/graphql";
-import React, { useMemo, useState } from "react";
+import React, { SetStateAction, useMemo, useState } from "react";
 import Availabilities from "./availabilities";
 import styles from './.module.scss';
 import AvailabilitiesHeader from './header';
@@ -12,6 +12,7 @@ import { useHours } from "./hooks/useHours";
 import Input from "@/components/Input";
 import Panel from "@/components/Panel";
 import { useGrids } from "./hooks/useGrids";
+import { useSelectedResponders } from "./hooks/useSelectedResponders";
 
 interface MeetProps {
   data: SanitizedMeetData;
@@ -40,8 +41,8 @@ const Meet = ({
   // converts list of times to grid
   const { aggregateAvailabilitiesGrid, availabilityGrids } = useGrids({ dates, hours, availabilities });
 
-  // for filtering view of availabilities to a given responder
-  const [selectedAvailabilityIndex, setSelectedAvailabilityIndex] = useState<number | undefined>();
+  // for filtering view of availabilities to subset of responders
+  const { selectedResponders, toggleSelectedResponder } = useSelectedResponders();
 
   const {
     localName, setLocalName,
@@ -87,8 +88,8 @@ const Meet = ({
           setLocalAvailabilityGrid={setLocalAvailabilityGrid}
           setLocalNumTimesAvailable={setLocalNumTimesAvailable}
           availabilities={availabilities}
-          selectedAvailabilityIndex={selectedAvailabilityIndex}
-          setSelectedAvailabilityIndex={setSelectedAvailabilityIndex}
+          selectedResponders={selectedResponders}
+          toggleSelectedResponder={toggleSelectedResponder}
         />
       </div>
     </div>

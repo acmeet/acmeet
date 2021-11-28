@@ -1,4 +1,4 @@
-import { Dispatch, MutableRefObject, SetStateAction, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 
 import SlotsGrid from './slots-grid';
 
@@ -21,8 +21,8 @@ interface AvailabilitiesProps {
   setLocalAvailabilityGrid: Dispatch<SetStateAction<(0|1)[][]>>;
   setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
   availabilities: Availability[];
-  selectedAvailabilityIndex: number | undefined;
-  setSelectedAvailabilityIndex: Dispatch<SetStateAction<number | undefined>>;
+  selectedResponders: Set<number>;
+  toggleSelectedResponder: Dispatch<number>;
 }
 
 const Availabilities: React.FC<AvailabilitiesProps> = ({
@@ -35,8 +35,8 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
   setLocalAvailabilityGrid,
   setLocalNumTimesAvailable,
   availabilities,
-  selectedAvailabilityIndex,
-  setSelectedAvailabilityIndex,
+  selectedResponders,
+  toggleSelectedResponder,
 }) => {
 
   const [dowStart, setDowStart] = useState<DayOfWeekIndex>(0);
@@ -56,14 +56,24 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
     return false;
   }
 
+  const selectedAvailabilityGrids = useMemo(() => (
+    availabilityGrids.filter((_, i) => selectedResponders.has(i))
+  ), [selectedResponders, availabilityGrids]);
+
   const respondersLabel = useRespondersLabel({
     view,
     availabilities,
     availabilityGrids,
-    selectedAvailabilityIndex,
+    selectedResponders,
+    selectedAvailabilityGrids,
     selectedSlot,
     hoveredSlot,
   });
+
+  const selectedRespondersNameAndIndex = useMemo(() => availabilities.reduce<[string, number][]>((accum, { name }, i) => {
+    if (selectedResponders.has(i)) { accum.push([name, i]); }
+    return accum;
+  }, []), [selectedResponders, availabilities]);
 
   return (
     <div className={styles.availabilities}>
@@ -87,7 +97,7 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
             localAvailabilityGrid={localAvailabilityGrid}
             setLocalAvailabilityGrid={setLocalAvailabilityGrid}
             setLocalNumTimesAvailable={setLocalNumTimesAvailable}
-            selectedAvailabilityIndex={selectedAvailabilityIndex}
+            selectedAvailabilityGrids={selectedAvailabilityGrids}
             selectedSlot={selectedSlot}
             setSelectedSlot={setSelectedSlot}
             hoveredSlot={hoveredSlot}
@@ -96,17 +106,32 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
         </div>
       </div>
       <div className={styles.responders}>
-        <h3 className={styles['responders-header']}>{respondersLabel}</h3>
+        <div className={styles['responders-heading']}>
+          <h3 className={styles['responders-header']}>{respondersLabel}</h3>
+          {selectedResponders.size === 0 ? null : (
+            <div className={styles['responders-selected']}>
+              {selectedRespondersNameAndIndex.map(([name, i], j) => (
+                <span
+                  key={j}
+                  className={styles['responder-selected']}
+                  onClick={() => toggleSelectedResponder(i)}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
         <div className={styles['responders-list']}>
           {availabilities.map(({ name }, i) => (
             <span
               key={i}
               className={c(
                 styles.responder,
-                selectedAvailabilityIndex === i && styles.selected,
+                selectedResponders.has(i) && styles.selected,
                 isUnavailable(i) && styles.unavailable,
               )}
-              onClick={() => setSelectedAvailabilityIndex((ind) => i !== ind ? i : undefined)}
+              onClick={() => { toggleSelectedResponder(i); }}
             >
               {name}
             </span>

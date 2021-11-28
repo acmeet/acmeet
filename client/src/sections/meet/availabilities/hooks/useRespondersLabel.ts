@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
 import type { Availability } from '../../hooks/useSanitizedMeetData';
 import type { AvailabilityGrid, View } from '../../types';
+import { countAvailability } from '../utils/count-availability';
 
 interface UseRespondersLabelProps {
   view: View;
   availabilities: Availability[];
   availabilityGrids: AvailabilityGrid[];
-  selectedAvailabilityIndex: number | undefined;
+  selectedResponders: Set<number>;
+  selectedAvailabilityGrids: AvailabilityGrid[];
   selectedSlot: [number, number] | undefined;
   hoveredSlot: [number, number] | undefined;
 }
@@ -15,16 +17,25 @@ export const useRespondersLabel = ({
   view,
   availabilities,
   availabilityGrids,
-  selectedAvailabilityIndex,
+  selectedResponders,
+  selectedAvailabilityGrids,
   selectedSlot,
   hoveredSlot,
 }: UseRespondersLabelProps) => {
-  return useMemo(() => {
+
+  const label = useMemo(() => {
     switch (view) {
       case 'view': {
-        if (selectedAvailabilityIndex !== undefined) {
-          return `${availabilities[selectedAvailabilityIndex].name}'s Availability`;
-        }
+        if (selectedResponders.size > 0 && selectedResponders.size < availabilities.length) { // subset
+          if (hoveredSlot !== undefined) {
+            const count = countAvailability(selectedAvailabilityGrids, ...hoveredSlot);
+            return `Responders (${count}/${selectedResponders.size})`;
+          } else if (selectedSlot !== undefined) {
+            const count = countAvailability(selectedAvailabilityGrids, ...selectedSlot);
+            return `Responders (${count}/${selectedResponders.size})`;
+          }
+          return `Responders (${selectedResponders.size} selected)`;
+        } // all
         if (hoveredSlot !== undefined) {
           const count = countAvailability(availabilityGrids, ...hoveredSlot);
           return `Responders (${count}/${availabilities.length})`;
@@ -40,12 +51,12 @@ export const useRespondersLabel = ({
     view,
     availabilities,
     availabilityGrids,
-    selectedAvailabilityIndex,
+    selectedResponders,
     selectedSlot,
     hoveredSlot,
+    // this doesn't do anything but gets eslint (react-hooks/exhaustive-deps) to shut up
+    selectedAvailabilityGrids,
   ]);
-}
 
-const countAvailability = (availabilityGrids: AvailabilityGrid[], i: number, j: number) => {
-  return availabilityGrids.reduce((accum, cur) => accum + cur[i][j], 0);
+  return label;
 }
