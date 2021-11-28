@@ -1,21 +1,18 @@
+import { MAX_DAYS_PER_MEET } from '@/common/constants';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import Button from '@/components/Button';
 import Metadata from './metadata';
 import Calendar from './calendar';
 import Times from './times';
 
+import { useCreateMeetMutation } from '@/graphql';
 import { c } from '@/utils/cls';
 import { validateMeetFields } from '@/utils/validation/meet';
 import { getTimezones } from '@/utils/datetime/timezones';
 
 import styles from './.module.scss';
-
-import { MAX_DAYS_PER_MEET } from '@/common/constants';
-import { useCreateMeetMutation } from '@/graphql';
-import Button from '@/components/Button';
-
-const meetDatesClassName = c(styles['meet-dates'], styles['meet-config-col--left']);
 
 const Home = () => {
   const [{ fetching }, createMeet] = useCreateMeetMutation();
@@ -108,3 +105,5 @@ const Home = () => {
 };
 
 export default Home;
+
+const meetDatesClassName = c(styles['meet-dates'], styles['meet-config-col--left']);

@@ -1,4 +1,4 @@
-@use '@/styles/mixins' as *;
+@use "@/styles/mixins" as *;
 
 .metadata {
   width: 100%;
@@ -6,8 +6,9 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: var(--font-size-subheading);
-  
-  .title-input, .description-input {
+
+  .title-input,
+  .description-input {
     font-size: var(--font-size-subheading);
   }
 }

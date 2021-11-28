@@ -1,7 +1,9 @@
-import type { NextPage } from 'next';
 import { withUrql } from '@/api/urql/withUrql';
+
 import Head from '@/layout/head';
 import Home from '@/sections/index';
+
+import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
   return (

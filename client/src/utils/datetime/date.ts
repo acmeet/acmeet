@@ -1,5 +1,5 @@
 import { mod } from '@/utils/math/mod';
-import { Enumerate } from '@/utils/types';
+import type { Enumerate } from '@/utils/types';
 
 export type MonthIndex = Enumerate<12>;
 export type DayOfWeekIndex = Enumerate<7>;

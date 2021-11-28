@@ -1,9 +1,13 @@
-import { forwardRef } from 'react';
-import { c } from '@/utils/cls';
-import styles from './.module.scss';
-import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from 'react';
 
-const Input = forwardRef<HTMLInputElement, DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>>(({
+import { c } from '@/utils/cls';
+
+import styles from './.module.scss';
+
+const Input = forwardRef<
+  HTMLInputElement,
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+>(({
   children,
   className,
   ...props
@@ -18,5 +22,7 @@ const Input = forwardRef<HTMLInputElement, DetailedHTMLProps<InputHTMLAttributes
     </input>
   )
 });
+
+Input.displayName = 'Input';
 
 export default Input

@@ -1,4 +1,5 @@
 import { createContext, useContext, useMemo, useState } from 'react';
+
 import { THEME_LOCALSTORAGE_KEY } from './constants';
 
 export type Theme = 'light' | 'dark';

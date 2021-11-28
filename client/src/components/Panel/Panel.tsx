@@ -1,7 +1,8 @@
-import { forwardRef, LegacyRef, useMemo, useRef } from 'react';
-import styles from './.module.scss';
-import type { HTMLAttributes } from 'react';
+import { forwardRef, HTMLAttributes, LegacyRef, useMemo, useRef } from 'react';
+
 import { c } from '@/utils/cls';
+
+import styles from './.module.scss';
 
 interface PanelProps extends HTMLAttributes<HTMLDivElement> {
   hidden: boolean;
@@ -49,5 +50,7 @@ const Panel = forwardRef<HTMLDivElement, PanelProps>(({
     </div>
   )
 });
+
+Panel.displayName = 'Panel';
 
 export default Panel;

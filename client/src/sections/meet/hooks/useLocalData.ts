@@ -1,15 +1,18 @@
 import { SLOTS_PER_HOUR } from '@/common/constants';
+import { useEffect, useState } from 'react';
+
 import { useCreateAvailabilityMutation } from '@/graphql';
-import { usePersistedState } from '@/hooks/usePersistedState';
 import { addMinutes } from '@/utils/datetime/date';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { usePersistedState } from '@/hooks/usePersistedState';
+
+import type { SetValue } from '@/utils/types';
 import type { View } from '../types';
 
 interface UseLocalDataProps {
   meetId: string;
   dates: Date[];
   hours: number[];
-  setView: Dispatch<SetStateAction<View>>;
+  setView: SetValue<View>;
 }
 
 export const useLocalData = ({

@@ -1,18 +1,20 @@
-import type { UseQueryResponse } from "urql";
-import type { MeetQuery } from "@/graphql";
-import React, { SetStateAction, useMemo, useState } from "react";
-import Availabilities from "./availabilities";
-import styles from './.module.scss';
+import React, { useState } from 'react';
+
+import Input from '@/components/Input';
+import Panel from '@/components/Panel';
+import Availabilities from './availabilities';
 import AvailabilitiesHeader from './header';
-import type { View } from "./types";
-import type { SanitizedMeetData } from "./hooks/useSanitizedMeetData";
-import { useLocalData } from "./hooks/useLocalData";
-import { useMonthYearLabel } from "./availabilities/hooks/useMonthYearLabel";
-import { useHours } from "./hooks/useHours";
-import Input from "@/components/Input";
-import Panel from "@/components/Panel";
-import { useGrids } from "./hooks/useGrids";
-import { useSelectedResponders } from "./hooks/useSelectedResponders";
+
+import { useHours } from './hooks/useHours';
+import { useGrids } from './hooks/useGrids';
+import { useLocalData } from './hooks/useLocalData';
+import { useMonthYearLabel } from './hooks/useMonthYearLabel';
+import { useSelectedResponders } from './hooks/useSelectedResponders';
+
+import styles from './.module.scss';
+
+import type { View } from './types';
+import type { SanitizedMeetData } from './hooks/useSanitizedMeetData';
 
 interface MeetProps {
   data: SanitizedMeetData;
@@ -35,7 +37,7 @@ const Meet = ({
 
   const [view, setView] = useState<View>('view');
 
-  // converts [startHour, endHour] to range of numbers corresponding
+  // converts [startHour, endHour] to range of numbers corresponding to interval [startHour, endHour)
   const hours = useHours({ startHour, endHour });
 
   // converts list of times to grid
@@ -63,10 +65,10 @@ const Meet = ({
         <AvailabilitiesHeader
           view={view}
           setView={setView}
-          submitScheduledTime={submitLocalScheduledTime}
-          submitAvailability={submitLocalAvailability}
           localName={localName}
           localNumTimesAvailable={localNumTimesAvailable}
+          submitAvailability={submitLocalAvailability}
+          submitScheduledTime={submitLocalScheduledTime}
         />
         <Panel className={styles['name-panel']} hidden={view !== 'add'}>
           <Input

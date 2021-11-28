@@ -1,5 +1,5 @@
-import { c } from "@/utils/cls";
-import { useThemeContext } from "../../context/Theme/ThemeContext";
+import { useThemeContext } from '@/context/Theme/ThemeContext';
+import { c } from '@/utils/cls';
 
 import styles from './.module.scss';
 

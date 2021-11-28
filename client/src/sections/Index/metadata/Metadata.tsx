@@ -1,13 +1,17 @@
+import React, { memo } from 'react';
+
 import Input from '@/components/Input';
 import TextArea from '@/components/Textarea';
-import React, { Dispatch, memo, SetStateAction } from 'react';
+
 import styles from './.module.scss';
+
+import type { SetValue } from '@/utils/types';
 
 interface MetadataProps {
   title: string;
-  setTitle: Dispatch<SetStateAction<string>>;
+  setTitle: SetValue<string>;
   description: string;
-  setDescription: Dispatch<SetStateAction<string>>;
+  setDescription: SetValue<string>;
 }
 
 const Metadata = ({ title, setTitle, description, setDescription }: MetadataProps) => {

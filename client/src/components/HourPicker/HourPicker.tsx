@@ -1,7 +1,10 @@
-import { c } from "@/utils/cls";
-import React, { ChangeEventHandler, useRef, useState } from "react";
+import React, { ChangeEventHandler, useRef, useState } from 'react';
+
+import { c } from '@/utils/cls';
 
 import styles from './.module.scss';
+
+import type { HourPickerChangeEventHandler } from './types';
 
 const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const ampm = ['am', 'pm'] as const;
@@ -11,8 +14,6 @@ const ampmOptions = ampm.map((mode) => <option key={mode} value={mode}>{mode}</o
 
 type TwelveHourType = typeof hours[number];
 type AmpmType = typeof ampm[number];
-
-export type HourPickerChangeEventHandler = (newState: number, oldState: number) => unknown;
 
 interface HourPickerProps {
   onChange?: HourPickerChangeEventHandler;

@@ -1,10 +1,8 @@
-import { forwardRef } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from 'react';
 
-import { c } from "@/utils/cls";
+import { c } from '@/utils/cls';
 
 import styles from './.module.scss';
-
-import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   accent?: boolean;
@@ -14,11 +12,11 @@ interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+  children,
   accent,
   variant = 'solid',
   corners = 'rounded',
   className,
-  children,
   ...props
 }, ref) => {
   return (
@@ -36,5 +34,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     </button>
   );
 });
+
+Button.displayName = 'Button';
 
 export default Button;

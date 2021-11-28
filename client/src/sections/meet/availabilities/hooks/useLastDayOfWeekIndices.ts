@@ -1,5 +1,6 @@
-import { DayOfWeekIndex, isEqual, weekStart } from '@/utils/datetime/date';
 import { useMemo } from 'react';
+
+import { DayOfWeekIndex, isEqual, weekStart } from '@/utils/datetime/date';
 
 interface UseLastDayOfWeekIndicesProps {
   dates: Date[];

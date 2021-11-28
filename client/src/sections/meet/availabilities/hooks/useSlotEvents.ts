@@ -1,15 +1,18 @@
-import React, { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction, useMemo, useRef, useState } from 'react';
+import React, { MouseEventHandler, useMemo, useRef, useState } from 'react';
+
 import { arrayShallowEquals } from '@/utils/arrayShallowEquals';
 import { noop_undefined } from '@/utils/noop';
+
+import type { SetValue } from '@/utils/types';
 import type { AvailabilityGrid, View } from '../../types';
 
 interface UseSlotEventsProps {
   view: View;
   localAvailabilityGrid: AvailabilityGrid;
-  setLocalAvailabilityGrid: Dispatch<SetStateAction<AvailabilityGrid>>;
-  setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
-  setSelectedSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
-  setHoveredSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
+  setLocalAvailabilityGrid: SetValue<AvailabilityGrid>;
+  setLocalNumTimesAvailable: SetValue<number>;
+  setSelectedSlot: SetValue<[number, number] | undefined>;
+  setHoveredSlot: SetValue<[number, number] | undefined>;
 }
 
 type SlotEventHandlerResolver = (i: number, j: number) => (MouseEventHandler<HTMLDivElement> | undefined);

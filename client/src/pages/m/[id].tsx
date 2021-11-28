@@ -1,13 +1,14 @@
-import type { NextPage } from "next";
-
 import Head from '@/layout/head';
 import Meet from '@/sections/meet';
 
-import { useRedirect } from "@/hooks/useRedirect";
-import { withUrql } from "@/api/urql/withUrql";
-import { useSanitizedMeetData } from "@/sections/meet/hooks/useSanitizedMeetData";
-import { useUrlId } from "@/api/hooks/useUrlId";
-import { useMeetQuery } from "@/graphql";
+import { withUrql } from '@/api/urql/withUrql';
+import { useUrlId } from '@/api/hooks/useUrlId';
+import { useMeetQuery } from '@/graphql';
+import { useRedirect } from '@/hooks/useRedirect';
+
+import { useSanitizedMeetData } from '@/sections/meet/hooks/useSanitizedMeetData';
+
+import type { NextPage } from 'next';
 
 const MeetPage: NextPage = () => {
   const meetId = useUrlId();

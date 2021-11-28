@@ -1,6 +1,8 @@
-import type { MeetQuery } from '@/graphql';
-import { addHours } from '@/utils/datetime/date';
 import { useMemo } from 'react';
+
+import { addHours } from '@/utils/datetime/date';
+
+import type { MeetQuery } from '@/graphql';
 
 interface UseSanitizedMeetDataProps {
   data: MeetQuery | undefined;

@@ -1,5 +1,5 @@
-@use '@/styles/constants' as *;
-@use '@/styles/mixins' as *;
+@use "@/styles/constants" as *;
+@use "@/styles/mixins" as *;
 
 .meet-times {
   width: 100%;
@@ -16,7 +16,8 @@
     justify-content: space-between;
     gap: $spacing-md;
 
-    .start-hour, .end-hour {
+    .start-hour,
+    .end-hour {
       &__label {
         font-size: var(--font-size-description);
         margin-bottom: var(--spacing-tn);
@@ -37,12 +38,12 @@
 
     &__picker {
       @include box-shadow-focus();
-      
+
       line-height: 1.5em;
       width: 100%;
       padding-right: 0.25rem;
       text-overflow: ellipsis;
-      
+
       &::-ms-expand {
         display: none;
       }
@@ -52,5 +53,5 @@
         color: var(--text-color);
       }
     }
-  }    
+  }
 }

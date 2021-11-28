@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-export const useRedirect = (to: string, condition = true, deps?: React.DependencyList) => {
+export const useRedirect = (to: string, condition = true, deps: React.DependencyList = []) => {
   const router = useRouter();
   useEffect(() => {
     if (condition) {
       router.push(to);
     }
-  }, deps);
+  }, [...deps, router, condition, to]);
 }

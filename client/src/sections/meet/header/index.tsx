@@ -1,13 +1,15 @@
-import React, { memo, MutableRefObject, useMemo } from 'react';
+import React, { memo, MouseEventHandler, useMemo } from 'react';
+
 import Button from '@/components/Button';
+
 import styles from './.module.scss';
 
-import type { Dispatch, MouseEventHandler, SetStateAction } from 'react';
+import type { SetValue } from '@/utils/types';
 import type { View } from '../types';
 
 interface AvailabilitiesHeaderProps {
   view: View;
-  setView: Dispatch<SetStateAction<View>>;
+  setView: SetValue<View>;
   localName: string;
   localNumTimesAvailable: number;
   submitAvailability: MouseEventHandler<HTMLButtonElement>;
@@ -17,10 +19,10 @@ interface AvailabilitiesHeaderProps {
 const AvailabilitiesHeader: React.FC<AvailabilitiesHeaderProps> = ({
   view,
   setView,
-  submitScheduledTime,
-  submitAvailability,
   localName,
   localNumTimesAvailable,
+  submitAvailability,
+  submitScheduledTime,
 }) => {
 
   const {

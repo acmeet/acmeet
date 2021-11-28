@@ -1,12 +1,13 @@
-import { ChangeEventHandler, useMemo } from 'react';
+import React, { ChangeEventHandler, useMemo } from 'react';
 
 import HourPicker from '@/components/HourPicker';
 
+import { useMounted } from '@/hooks/useMounted';
+
 import styles from './.module.scss';
 
-import type { HourPickerChangeEventHandler } from '@/components/HourPicker/HourPicker';
-import { DetailedTimezoneList } from '@/utils/datetime/timezones';
-import { useMounted } from '@/hooks/useMounted';
+import type { HourPickerChangeEventHandler } from '@/components/HourPicker/types';
+import type { DetailedTimezoneList } from '@/utils/datetime/timezones';
 
 interface TimesProps {
   onChangeStartHour: HourPickerChangeEventHandler;

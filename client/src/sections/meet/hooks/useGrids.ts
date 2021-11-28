@@ -1,8 +1,10 @@
 import { MS_PER_SLOT, SLOTS_PER_HOUR } from '@/common/constants';
+import { useMemo } from 'react';
+
 import { lowerBound } from '@/utils/lowerBound';
-import React, { useMemo } from 'react';
-import { AvailabilityGrid } from '../types';
+
 import type { Availability } from './useSanitizedMeetData';
+import type { AvailabilityGrid } from '../types';
 
 interface UseGridsProps {
   dates: Date[];

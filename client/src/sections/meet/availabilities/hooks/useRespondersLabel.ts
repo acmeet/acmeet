@@ -1,7 +1,9 @@
 import { useMemo } from 'react';
-import type { Availability } from '../../hooks/useSanitizedMeetData';
-import type { AvailabilityGrid, View } from '../../types';
+
 import { countAvailability } from '../utils/count-availability';
+
+import type { AvailabilityGrid, View } from '../../types';
+import type { Availability } from '../../hooks/useSanitizedMeetData';
 
 interface UseRespondersLabelProps {
   view: View;

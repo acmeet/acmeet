@@ -1,7 +1,8 @@
-import { forwardRef } from 'react';
+import { DetailedHTMLProps, forwardRef, TextareaHTMLAttributes } from 'react';
+
 import { c } from '@/utils/cls';
+
 import styles from './.module.scss';
-import type { DetailedHTMLProps, TextareaHTMLAttributes } from 'react';
 
 const Textarea = forwardRef<HTMLTextAreaElement, DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>>(({
   children,
@@ -18,5 +19,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, DetailedHTMLProps<TextareaHTMLA
     </textarea>
   )
 });
+
+Textarea.displayName = 'Textarea';
 
 export default Textarea;

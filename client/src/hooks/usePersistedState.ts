@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
 
-type SetValue<T> = Dispatch<SetStateAction<T>>;
+import type { SetValue } from '@/utils/types';
 
 export const usePersistedState = <T>(key: string, defaultValue: (T | (() => T))): [T, SetValue<T>] => {
   const provider = useMemo(() => getLocalStorageProvider(), []);

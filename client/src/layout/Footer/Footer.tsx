@@ -2,8 +2,6 @@ import React from 'react';
 
 import styles from './.module.scss';
 
-const REPO_LINK = `github.com/acmeet/acmeet`;
-
 const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
@@ -14,3 +12,5 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+const REPO_LINK = 'github.com/acmeet/acmeet';

@@ -1,15 +1,18 @@
-import { Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { Dispatch, useMemo, useState } from 'react';
 
 import SlotsGrid from './slots-grid';
 
 import { c } from '@/utils/cls';
 
+import { formatHour } from './utils/fmt';
+import { useRespondersLabel } from './hooks/useRespondersLabel';
+
 import styles from './.module.scss';
 
 import type { DayOfWeekIndex } from '@/utils/datetime/date';
-import { AvailabilityGrid, View } from '../types';
-import { useRespondersLabel } from './hooks/useRespondersLabel';
-import { Availability } from '../hooks/useSanitizedMeetData';
+import type { SetValue } from '@/utils/types';
+import type { Availability } from '../hooks/useSanitizedMeetData';
+import type { AvailabilityGrid, View } from '../types';
 
 interface AvailabilitiesProps {
   view: View;
@@ -18,8 +21,8 @@ interface AvailabilitiesProps {
   aggregateAvailabilitiesGrid: number[][];
   availabilityGrids: AvailabilityGrid[];
   localAvailabilityGrid: (0|1)[][];
-  setLocalAvailabilityGrid: Dispatch<SetStateAction<(0|1)[][]>>;
-  setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
+  setLocalAvailabilityGrid: SetValue<(0|1)[][]>;
+  setLocalNumTimesAvailable: SetValue<number>;
   availabilities: Availability[];
   selectedResponders: Set<number>;
   toggleSelectedResponder: Dispatch<number>;
@@ -31,14 +34,15 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
   hours,
   aggregateAvailabilitiesGrid,
   availabilityGrids,
-  localAvailabilityGrid,
-  setLocalAvailabilityGrid,
+  localAvailabilityGrid, setLocalAvailabilityGrid,
   setLocalNumTimesAvailable,
   availabilities,
   selectedResponders,
   toggleSelectedResponder,
 }) => {
-
+  // for configuring which day is the "start of the week"; atm always 0 (sunday)
+  // may want to move this to its own context and share between create meet page and this one
+  // and factor that into the calendar display
   const [dowStart, setDowStart] = useState<DayOfWeekIndex>(0);
 
   // for updating list of responders when hovering/selecting slots in "view" view
@@ -48,18 +52,20 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
   // whether to style a responder's name as "unavailable"
   const isUnavailable = (i: number) => {
     if (hoveredSlot !== undefined) {
-      return availabilityGrids[i][hoveredSlot[0]][hoveredSlot[1]] == 0;
+      return availabilityGrids[i][hoveredSlot[0]][hoveredSlot[1]] === 0;
     }
     if (selectedSlot !== undefined) {
-      return availabilityGrids[i][selectedSlot[0]][selectedSlot[1]] == 0;
+      return availabilityGrids[i][selectedSlot[0]][selectedSlot[1]] === 0;
     }
     return false;
   }
 
+  // filtered availability grids by those which are selected
   const selectedAvailabilityGrids = useMemo(() => (
     availabilityGrids.filter((_, i) => selectedResponders.has(i))
   ), [selectedResponders, availabilityGrids]);
 
+  // label for responders list
   const respondersLabel = useRespondersLabel({
     view,
     availabilities,
@@ -70,6 +76,7 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
     hoveredSlot,
   });
 
+  // for creating select responders pills
   const selectedRespondersNameAndIndex = useMemo(() => availabilities.reduce<[string, number][]>((accum, { name }, i) => {
     if (selectedResponders.has(i)) { accum.push([name, i]); }
     return accum;
@@ -143,5 +150,3 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
 }
 
 export default Availabilities;
-
-const formatHour = (hour: number) => `${hour % 12 || 12} ${hour < 12 ? 'am' : 'pm'}`;

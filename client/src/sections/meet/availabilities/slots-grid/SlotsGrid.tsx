@@ -1,17 +1,19 @@
-import React, { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import React from 'react';
+
 import { arrayShallowEquals } from '@/utils/arrayShallowEquals';
 import { c } from '@/utils/cls';
 import { SLOTS_PER_HOUR } from '@/common/constants';
+
+import { countAvailability } from '../utils/count-availability';
+import { formatDay, formatDow } from '../utils/fmt';
 import { useLastDayOfWeekIndices } from '../hooks/useLastDayOfWeekIndices';
 import { useSlotEvents } from '../hooks/useSlotEvents';
 
 import styles from './.module.scss';
 
 import type { DayOfWeekIndex } from '@/utils/datetime/date';
+import type { SetValue } from '@/utils/types';
 import type { AvailabilityGrid, View } from '../../types';
-import { countAvailability } from '../utils/count-availability';
-
-const slotsMap = Array(SLOTS_PER_HOUR).fill(undefined);
 
 interface SlotsGridProps {
   view: View;
@@ -21,13 +23,13 @@ interface SlotsGridProps {
   aggregateAvailabilitiesGrid: number[][];
   availabilityGrids: AvailabilityGrid[];
   localAvailabilityGrid: AvailabilityGrid;
-  setLocalAvailabilityGrid: Dispatch<SetStateAction<AvailabilityGrid>>;
-  setLocalNumTimesAvailable: Dispatch<SetStateAction<number>>;
+  setLocalAvailabilityGrid: SetValue<AvailabilityGrid>;
+  setLocalNumTimesAvailable: SetValue<number>;
   selectedAvailabilityGrids: AvailabilityGrid[];
   selectedSlot: [number, number] | undefined;
-  setSelectedSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
+  setSelectedSlot: SetValue<[number, number] | undefined>;
   hoveredSlot: [number, number] | undefined;
-  setHoveredSlot: Dispatch<SetStateAction<[number, number] | undefined>>;
+  setHoveredSlot: SetValue<[number, number] | undefined>;
 }
 
 const SlotsGrid: React.FC<SlotsGridProps> = ({
@@ -37,14 +39,11 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
   hours,
   aggregateAvailabilitiesGrid,
   availabilityGrids,
-  localAvailabilityGrid,
-  setLocalAvailabilityGrid,
+  localAvailabilityGrid, setLocalAvailabilityGrid,
   setLocalNumTimesAvailable,
   selectedAvailabilityGrids,
-  selectedSlot,
-  setSelectedSlot,
-  hoveredSlot,
-  setHoveredSlot,
+  selectedSlot, setSelectedSlot,
+  hoveredSlot, setHoveredSlot,
 }) => {
 
   const lastDayOfWeekIndices = useLastDayOfWeekIndices({ dates, dowStart });
@@ -64,6 +63,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
     setHoveredSlot,
   });
 
+  // compute the opacity of a given slot
   const opacity = (i: number, j: number) => {
     switch (view) {
       case 'add': {
@@ -79,9 +79,13 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
     }
   }
 
+  // outline selected or hovered slots
   const isOutlined = (i: number, j: number) => {
     const a = [i, j];
-    return arrayShallowEquals(a, hoveredSlot) || arrayShallowEquals(a, selectedSlot);
+    switch (view) {
+      case 'view': return arrayShallowEquals(a, hoveredSlot) || arrayShallowEquals(a, selectedSlot);
+      default: return false;
+    }
   }
 
   return (
@@ -127,5 +131,4 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
 
 export default SlotsGrid;
 
-const formatDow = (date: Date, locale='en-US') => date.toLocaleString(locale, { weekday: 'short' });
-const formatDay = (date: Date, locale='en-US') => date.toLocaleString(locale, { day: 'numeric' });
+const slotsMap = Array(SLOTS_PER_HOUR).fill(undefined);

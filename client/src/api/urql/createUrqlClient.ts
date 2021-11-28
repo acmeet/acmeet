@@ -1,5 +1,5 @@
-import { cacheExchange, dedupExchange, fetchExchange } from "@urql/core"
-import type { NextUrqlClientConfig } from "next-urql"
+import { cacheExchange, dedupExchange, fetchExchange } from '@urql/core';
+import type { NextUrqlClientConfig } from 'next-urql';
 
 export const createUrqlClient: NextUrqlClientConfig = (ssrExchange, ctx) => {
 
