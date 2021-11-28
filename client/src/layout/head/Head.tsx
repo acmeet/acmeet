@@ -17,6 +17,7 @@ const Head: React.FC<HeadProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <link rel="icon" href="/favicon.ico" />
+      <link rel="manifest" href="/app.webmanifest" />
     </NextHead>
   )
 };
