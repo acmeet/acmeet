@@ -25,7 +25,6 @@
 
   &:focus {
     #{$varname}: 0px;
-    --shadow-hsl: var(--accent-color-hsl);
   }
 }
 
