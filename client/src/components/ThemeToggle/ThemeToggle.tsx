@@ -11,6 +11,7 @@ const ThemeToggle = () => {
 
   const onKeyDown: KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (!['Enter', ' ', 'Spacebar'].includes(e.key)) { return; }
+    e.preventDefault();
     toggleTheme();
   }
 
