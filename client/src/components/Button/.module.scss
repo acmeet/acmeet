@@ -59,8 +59,7 @@
     --button-color-secondary-l: var(--accent-color-l);
   }
 
-  &:hover,
-  &:active {
+  @include hfa() {
     &:not(:disabled) {
       --button-color-fill-l: 65%;
     }
@@ -71,8 +70,7 @@
     --button-color-fill: var(--button-color-primary);
     --button-color-border: var(--button-color-secondary);
 
-    &:hover,
-    &:active {
+    @include hfa() {
       &:not(:disabled) {
         --button-color-text: var(--button-color-primary);
         --button-color-fill: var(--button-color-secondary);

@@ -1,17 +1,22 @@
 .hour-picker {
   --offset: 4px;
+  --shadow-color-hsl: var(--translucent-hsl);
   border-radius: 0.25rem;
-  box-shadow: 0 var(--offset) 4px calc(-1 * var(--offset)) var(--translucent-hv);
+  box-shadow: 0 var(--offset) 4px calc(-1 * var(--offset))
+    hsl(var(--shadow-color-hsl) / var(--opacity-hv));
   display: inline-flex;
 
-  & &__hour, & &__ampm {
+  & &__hour,
+  & &__ampm {
     height: 1.5em;
     outline: none;
     border-radius: 0.25rem;
-    box-shadow: 0 var(--offset) 4px calc(-1 * var(--offset)) var(--translucent-hv);
+    box-shadow: 0 var(--offset) 4px calc(-1 * var(--offset))
+      hsl(var(--shadow-color-hsl) / var(--opacity-hv));
 
     &:focus {
       --offset: 0px;
+      --shadow-color-hsl: var(--accent-color-hsl);
     }
 
     &::-ms-expand {
@@ -21,7 +26,7 @@
 
   &__hour {
     width: 4rem;
-    padding-right: 0.5em; 
+    padding-right: 0.5em;
   }
 
   &__ampm {

@@ -16,14 +16,16 @@
 
 @mixin box-shadow-focus($offset: 4px, $varname: --offset) {
   #{$varname}: $offset;
+  --shadow-hsl: var(--translucent-hsl);
   outline: none;
   border: none;
   border-radius: 0.25rem;
   box-shadow: 0 var(#{$varname}) 4px calc(-1 * var(#{$varname}))
-    var(--translucent-hv);
+    hsl(var(--shadow-hsl) / var(--opacity-hv));
 
   &:focus {
     #{$varname}: 0px;
+    --shadow-hsl: var(--accent-color-hsl);
   }
 }
 

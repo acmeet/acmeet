@@ -38,6 +38,7 @@ html {
   --opacity-hv: 0.8;
   --opaque: 1;
 
+  --translucent-hsl: var(--hue-base) var(--saturation-base) var(--grey-l);
   --translucent-fe: hsl(
     var(--hue-base) var(--saturation-base) var(--grey-l) / var(--opacity-fe)
   );
