@@ -7,7 +7,7 @@ import {
 } from "@/common/constants/validation";
 
 import type { KeyOf, ValueOf } from "@/common/utils/types";
-import { timezones } from "@/utils/datetime/timezones";
+import { DetailedTimezoneList } from "../datetime/timezones";
 
 interface ValidateMeetFieldsProps {
   name?: string;
@@ -17,16 +17,24 @@ interface ValidateMeetFieldsProps {
   timezone?: string;
 }
 
-export const validateMeetFields = (fields: ValidateMeetFieldsProps) => {
+interface ValidateMeetFieldsContext {
+  timezones?: DetailedTimezoneList;
+}
+
+export const validateMeetFields = (fields: ValidateMeetFieldsProps, ctx?: ValidateMeetFieldsContext) => {
   for (const k in fields) {
-    if (!validateMeetField(k as KeyOf<typeof fields>, fields[k as KeyOf<typeof fields>])) {
+    if (!validateMeetField(k as KeyOf<typeof fields>, fields[k as KeyOf<typeof fields>], ctx)) {
       return false;
     }
   }
   return true;
 }
 
-const validateMeetField = (field: KeyOf<ValidateMeetFieldsProps>, value: ValueOf<ValidateMeetFieldsProps>) => {
+const validateMeetField = (
+  field: KeyOf<ValidateMeetFieldsProps>,
+  value: ValueOf<ValidateMeetFieldsProps>,
+  ctx?: ValidateMeetFieldsContext,
+) => {
   switch (field) {
     case 'name':
       return typeof value === 'string'
@@ -52,7 +60,7 @@ const validateMeetField = (field: KeyOf<ValidateMeetFieldsProps>, value: ValueOf
       ;
     case 'timezone':
       return typeof value === 'string'
-        && value in timezones
+        && ctx?.timezones?.[value] !== undefined
       ;
   }
 }

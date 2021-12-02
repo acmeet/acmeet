@@ -44,7 +44,10 @@ const Home = () => {
   ), [startHour, endHour]);
 
   const onClickCreateMeetButton = () => {
-    if (fetching || !validateMeetFields({ name: title, description, dates, hours, timezone })) { return; }
+    if (fetching || !validateMeetFields(
+      { name: title, description, dates, hours, timezone },
+      { timezones },
+    )) { return; }
 
     // convert dates to midnight of selected timezone
     const offset = timezones[timezone].minutesOffset - initialTimezone.minutesOffset;
