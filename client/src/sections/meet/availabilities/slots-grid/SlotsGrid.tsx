@@ -84,6 +84,7 @@ const SlotsGrid: React.FC<SlotsGridProps> = ({
     const a = [i, j];
     switch (view) {
       case 'view': return arrayShallowEquals(a, hoveredSlot) || arrayShallowEquals(a, selectedSlot);
+      case 'add': return arrayShallowEquals(a, hoveredSlot);
       default: return false;
     }
   }

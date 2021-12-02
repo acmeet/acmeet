@@ -112,39 +112,41 @@ const Availabilities: React.FC<AvailabilitiesProps> = ({
           />
         </div>
       </div>
-      <div className={styles.responders}>
-        <div className={styles['responders-heading']}>
-          <h3 className={styles['responders-header']}>{respondersLabel}</h3>
-          {selectedResponders.size === 0 ? null : (
-            <div className={styles['responders-selected']}>
-              {selectedRespondersNameAndIndex.map(([name, i], j) => (
-                <span
-                  key={j}
-                  className={styles['responder-selected']}
-                  onClick={() => toggleSelectedResponder(i)}
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          )}
+      {view !== 'view' ? null : (
+        <div className={styles.responders}>
+          <div className={styles['responders-heading']}>
+            <h3 className={styles['responders-header']}>{respondersLabel}</h3>
+            {selectedResponders.size === 0 ? null : (
+              <div className={styles['responders-selected']}>
+                {selectedRespondersNameAndIndex.map(([name, i], j) => (
+                  <span
+                    key={j}
+                    className={styles['responder-selected']}
+                    onClick={() => toggleSelectedResponder(i)}
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className={styles['responders-list']}>
+            {availabilities.map(({ name }, i) => (
+              <span
+                key={i}
+                className={c(
+                  styles.responder,
+                  selectedResponders.has(i) && styles.selected,
+                  isUnavailable(i) && styles.unavailable,
+                )}
+                onClick={() => { toggleSelectedResponder(i); }}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
-        <div className={styles['responders-list']}>
-          {availabilities.map(({ name }, i) => (
-            <span
-              key={i}
-              className={c(
-                styles.responder,
-                selectedResponders.has(i) && styles.selected,
-                isUnavailable(i) && styles.unavailable,
-              )}
-              onClick={() => { toggleSelectedResponder(i); }}
-            >
-              {name}
-            </span>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   )
 }

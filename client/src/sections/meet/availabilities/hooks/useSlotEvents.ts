@@ -65,11 +65,14 @@ export const useSlotEvents = ({
       case 'add':
         return {
           onMouseEnter: (i: number, j: number) => () => {
+            setHoveredSlot([i, j]);
             if (selectionStartSlot !== undefined) {
               setSelectionEndSlot([i,j]);
             }
           },
-          onMouseLeave: () => noop_undefined,
+          onMouseLeave: () => () => {
+            setHoveredSlot(undefined);
+          },
           onMouseDown: (i: number, j: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.preventDefault();
             const target = [i,j] as [number, number];
