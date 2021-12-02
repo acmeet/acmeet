@@ -10,9 +10,12 @@
   --responders-width: 12rem;
 
   .calendar-container {
-    // flex: 1 1 50%;
-    max-width: 100%;
+    max-width: calc(100% - var(--responders-width) - #{$spacing-md});
     display: flex;
+
+    @media only screen and (max-width: $md) {
+      max-width: 100%;
+    }
 
     .calendar {
       --col-header-height: 3rem;
