@@ -77,7 +77,10 @@ const Home = () => {
           <p className={meetDatesLabelClassName}>
             {calendarLabel}
           </p>
-          <Calendar onChangeSelectedDates={onChangeSelectedDates} />
+          <Calendar
+            className={styles.calendar}
+            onChangeSelectedDates={onChangeSelectedDates}
+          />
         </div>
         <div className={styles['meet-config-col--right']}>
           <Times

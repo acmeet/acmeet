@@ -13,15 +13,21 @@
     gap: $spacing-md;
 
     .meet-dates {
+      --calendar-border-radius: 1rem;
       flex-basis: $sm;
 
       .dates-selected {
+        margin-left: var(--calendar-border-radius);
         margin-bottom: var(--spacing-tn);
         font-size: var(--font-size-description);
 
         &--exceeded {
           color: var(--accent-color);
         }
+      }
+
+      .calendar {
+        border-radius: var(--calendar-border-radius);
       }
     }
 
