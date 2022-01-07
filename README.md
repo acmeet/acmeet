@@ -55,6 +55,6 @@ acmeet is a web application for assisting groups of people in finding times to s
 
 ## architecture notes
 
-acmeet is created as a personal project for better familiarizing myself with variouos technologies such as GraphQL, PostgreSQL, TypeORM, and TypeGraphQL. If this application was to be built with being a website with an actual userbase in mind, it would have been written in Rust, and used a key value database (which better fits the needs of the application), such as MongoDB.
+acmeet is created as a personal project for better familiarizing myself with various technologies such as GraphQL, PostgreSQL, TypeORM, and TypeGraphQL. If this application was to be built with being a website with an actual userbase in mind, it would have been written in Rust, and used a key value database (which better fits the needs of the application), such as MongoDB.
 
 In a similar vein, acmeet is designed with minimizing server operations in mind so as to avoid hosting costs. This results in incredibly _inefficient_ communication between the client and server, as well as complicating the rendering of data on the client side. It also means the data validation server side sucks. It's also why acmeet only supports 30 minute increments, even though, at least personally, 15 minutes would be preferred.
